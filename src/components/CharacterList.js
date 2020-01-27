@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
+import { Link } from "react-router-dom";
 
 export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
@@ -18,7 +19,7 @@ export default function CharacterList(props) {
   }, []);
 
   return (
-    <section className="character-list">
+    <Link className="character-list" to="/characterlist">
       <h2>{cards && cards.map(card => {
         return (
           <CharacterCard 
@@ -29,6 +30,6 @@ export default function CharacterList(props) {
           />
         )
       })}</h2>
-    </section>
+    </Link>
   );
 }
