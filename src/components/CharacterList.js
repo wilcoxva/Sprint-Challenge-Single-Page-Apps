@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import SearchForm from "./SearchForm";
 
-export default function CharacterList(props) {
+const CharacterList = props => {
   // TODO: Add useState to track data from useEffect
   const [cards, setCards] = useState([]);
 
@@ -14,12 +14,13 @@ export default function CharacterList(props) {
     axios
     .get('https://rickandmortyapi.com/api/character/')
     .then((res) => {
-      console.log(res.data.results)
-      setCards(res.data.results)
+      console.log(res.data.results);
+      setCards(res.data.results);
     })
   }, []);
 
   return (
+    <div><SearchForm setCards={setCards} />
     <Link className="character-list" to="/characterlist">
       <h2>{cards && cards.map(card => {
         return (
@@ -31,6 +32,9 @@ export default function CharacterList(props) {
           />
         )
       })}</h2>
-    </Link>
+    </Link></div>
+    
   );
 }
+
+export default CharacterList;
